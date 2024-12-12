@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  dns_vpn_server:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Убедитесь, что ваш Dockerfile правильно настроен
+    container_name: dns_vpn_server
+    ports:
+      - "5354:5354"  # Убедитесь, что порт 5354 проброшен наружу
+    networks:
+      - dns_network
+    environment:
+      - ENCRYPTION_KEY=Mwj6yHtnmR5BfENEbQAGFFbSdQJ5OHh6OPUH_pIwmlA=  # Убедитесь, что переменные окружения правильно настроены
+
+networks:
+  dns_network:
+    driver: bridge
